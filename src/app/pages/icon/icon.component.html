@@ -1,0 +1,177 @@
+<!-- <div class="row">
+  <card>
+    <tabset id="tabs4" theme="justified">
+      <tab-content for="tabs4" tabTitle="Notifications" [active]="true">
+        <div class="card card-block animated fadeIn">
+          <div class="row">
+            <div class="col-md-3">
+              <button class="btn btn-primary btnAdd">Send Message</button>
+            </div>
+          </div>
+          <div class="mt-4 row">
+                <div class="col-md-12">
+                  <card cardTitle='Notifications List' isCollapse="true">
+                    <card >
+                    <table class="table">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th>Select</th>
+                          <th>S.No</th>
+                          <th>Name</th>
+                          <th>Mobile</th>
+                        </tr>
+              
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of tableData | paginate: { id: 'pager', itemsPerPage: pageSize, currentPage: pageNumber};let index = index">
+                          <td>
+                            <input type="checkbox" name="message{{index}}" />
+                          </td>
+                          <td>{{index+1}}</td>
+                          <td>{{item.firstName}}</td>
+                          <td>{{item.mobile}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <form class="pagination-wrapper">
+                      <div class="row">
+                        <div class="col-6">
+                          <pagination-controls class="my-pagination" id="pager" (pageChange)="pageChanged($event)" maxSize="9" directionLinks="true"
+                          autoHide="true" previousLabel="Prev" nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+                          screenReaderCurrentLabel="You're on page">
+                        </pagination-controls>
+                        </div>
+                        <div class="col-6">
+                          <div class="input-group input-group-sm" style="width: 10%; margin-left: 89%;">
+                            <select class="form-control" name="pageChangedName" [(ngModel)]="pageSize" (ngModelChange)="loadData()">
+                              <option>1</option>
+                              <option>5</option>
+                              <option>10</option>
+                              <option>20</option>
+                              <option>50</option>
+                              <option>100</option>
+                              <option>200</option>
+                            </select>
+                            <span class="input-group-addon addon-right">Per Page</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                    
+                    </form>
+                    </card>
+                    
+                  </card>
+                </div>
+            </div>
+          </div>
+        </tab-content>
+        <tab-content for="tabs4" tabTitle="Bulk Notifications">
+          <div class="card card-block animated fadeIn">
+            <div class="row">
+              <div class="col-md-1">
+                <button class="btn btn-primary btnStyle" (click)="openModal(myModal)">Add</button>
+              </div>
+              <div class="col-md-3">
+                <button class="btn btn-primary btnAdd">Send Message</button>
+              </div>
+            </div>
+            <div class="row">
+                  <div class="col-md-12">
+                    <card cardTitle='Notifications List' isCollapse="true">
+                   
+                      <card >
+                      <table class="table">
+                        <thead class="thead-dark">
+                          <tr>
+                            <th>Select</th>
+                            <th>S.No</th>
+                            <th>Name</th>
+                            <th>Mobile</th>
+                          </tr>
+                
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let item of tableData | paginate: { id: 'pager', itemsPerPage: pageSize, currentPage: pageNumber};let index = index">
+                            <td>
+                              <input type="checkbox" name="message{{index}}" />
+                            </td>
+                            <td>{{index+1}}</td>
+                            <td>{{item.firstName}}</td>
+                            <td>{{item.mobile}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <form class="pagination-wrapper">
+                        <div class="row">
+                          <div class="col-6">
+                            <pagination-controls class="my-pagination" id="pager" (pageChange)="pageChanged($event)" maxSize="9" directionLinks="true"
+                            autoHide="true" previousLabel="Prev" nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+                            screenReaderCurrentLabel="You're on page">
+                          </pagination-controls>
+                          </div>
+                          <div class="col-6">
+                            <div class="input-group input-group-sm" style="width: 10%; margin-left: 89%;">
+                              <select class="form-control" name="pageChangedName" [(ngModel)]="pageSize" (ngModelChange)="loadData()">
+                                <option>1</option>
+                                <option>5</option>
+                                <option>10</option>
+                                <option>20</option>
+                                <option>50</option>
+                                <option>100</option>
+                                <option>200</option>
+                              </select>
+                              <span class="input-group-addon addon-right">Per Page</span>
+                            </div>
+                          </div>
+                        </div>
+                       
+                      
+                      </form>
+                      </card>
+                      
+                    </card>
+                  </div>
+              </div>
+            </div>
+          </tab-content>
+    </tabset>
+   
+  </card>
+</div>
+
+
+  <modal #myModal>
+    <modal-header>
+      <h3>Add Contact</h3>
+    </modal-header>
+    <modal-content>
+     <div class="container">
+       <div class="row">
+        <div class="col-sm-3 form-group">
+          <label class="control-label">Name</label>
+          <input type="text" class="form-control" placeholder="" [(ngModel)]="contactInfo.firstName"/>
+        </div>
+        <div class="col-sm-3 form-group">
+          <label class="control-label">Mobile</label>
+          <input type="text" class="form-control" placeholder="" [(ngModel)]="contactInfo.mobile"/>
+        </div>
+        
+       </div>
+     </div>
+    </modal-content>
+    <modal-footer>
+      <div class="row">
+        <div class="col-md-3">
+          <button class="btn btn-primary" style="margin-left: 450px;" (click)="addContact(myModal)">Add</button>
+        </div>
+        <div class="col-md-6">
+          <button class="btn btn-primary" style="margin-left: 360px" (click)="closeModal(myModal)">Close</button>
+        </div>
+      </div>
+     
+    </modal-footer>
+  </modal> -->
+
+
+  <iframe width="320" height="440" src="http://instagram.com/p/qbq6fIJMVZ/embed" frameborder="0"></iframe>

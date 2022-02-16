@@ -1,0 +1,90 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="row card card-block">
+    
+      <div>
+        <form #patient="ngForm" 
+        novalidate>
+      <div class="row">
+        <div class="col-md-4 form-group">
+          <label class="control-label">First Name          <span class="mandatoryField">*</span></label>
+          <input type="text" class="form-control" [(ngModel)]="createPatient.firstname" name="firstname" #firstname="ngModel" tabindex="1" autocomplete="off" autofocus required>
+        </div>
+        <div class="col-md-4 form-group">
+          <label class="control-label">Last Name
+          <span class="mandatoryField">*</span></label>
+          <input type="text" class="form-control" [(ngModel)]="createPatient.lastname" placeholder="" name="lastname" #lastname="ngModel"  autocomplete="off"
+           autofocus tabindex="2" required>
+        </div>
+
+
+      </div>
+      <div class="row">
+        <div class="col-md-4 form-group">
+          <label class="control-label">Gender</label>
+
+          <div class="row">
+            <div class="col-md-4">
+              <input type="radio" name="male" id="male" class="control-label" value="male" [(ngModel)]="createPatient.gender" tabindex="3"  name="gender1" #gender1="ngModel"  /> Male
+            </div>
+            <div class="col-md-4">
+              <input type="radio" name="female" id="female" class="control-label" value="female" [(ngModel)]="createPatient.gender" tabindex="4" name="gender2" #gender2="ngModel" />
+              Female
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <label class="control-label">Age</label>
+          <input type="text" class="form-control" [(ngModel)]="createPatient.age" tabindex="5" placeholder="" tabindex="5" autocomplete="off" autofocus  name="age" #age="ngModel">
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="col-md-4 form-group">
+          <label class="control-label">Mobile
+          <span class="mandatoryField">*</span></label>
+          <input type="text" class="form-control" [(ngModel)]="createPatient.mobile" autocomplete="off" autofocus tabindex="6" pattern="[0-9]*"
+          minlength="10"
+          maxlength="10"
+           name="mobile" #mobile="ngModel" placeholder="" required >
+           <div [hidden]="mobile.valid || mobile.pristine"
+           class="alert alert-danger">
+           <div [hidden]="!mobile.hasError('maxlength')">Please enter 10 digits</div>
+           <div [hidden]="!mobile.hasError('required')">Mobile number is required</div>
+           <div [hidden]="!mobile.hasError('pattern')">Mobile number must contain digits</div>
+           </div>
+        </div>
+        <div class="col-md-4 form-group">
+           <label class="control-label">Complaint</label>
+         <!-- <input type="text" class="form-control" [(ngModel)]="createPatient.complaint" placeholder=""> -->
+            <select class="form-control" id="exampleFormControlSelect1"  autocomplete="off" autofocus tabindex="7" [(ngModel)]="createPatient.complaint" name="complaint" #complaint="ngModel"
+                >
+                <option value="null" selected>Select</option>
+                <option value="Dental">Dental</option>
+                <option value="Hair">Hair</option>
+            </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 form-group">
+          <label class="control-label">Address</label>
+          <textarea class="form-control" [(ngModel)]="createPatient.address" name="address" #address="ngModel" tabindex="8"
+           placeholder=""></textarea>
+        </div>
+      </div>
+      </form>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <button class="btn btn-primary btnStyle" [disabled]="!patient.form.valid"
+           (click)="addPatient()">Add Patient
+          </button>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-primary btnStyle" (click)="cancel()">Cancel</button>
+        </div>
+      </div>
+   
+    </div>
+  </div>
+</div>

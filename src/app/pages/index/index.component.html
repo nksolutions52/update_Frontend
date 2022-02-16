@@ -1,0 +1,198 @@
+<div class="row">
+  <div class="col-md-4">
+    <div class="search-group">
+      <input type="text" class="search-input" [(ngModel)]="searchConsultee" 
+      (keyup.delete)="getConsultee(searchConsultee)"
+      (keyup.Backspace)="getConsultee(searchConsultee)" (keydown.enter)="getConsultee(searchConsultee)"
+      placeholder="Search Consultee">
+      <button class="search-btn">
+        <i class="fa fa-search fa-fw"></i>
+      </button>
+    </div>
+  </div>
+  <div class="col-md-3 animated fadeIn leftClass">
+    <div class="card card-block tip-card">
+      <div class="tip-msg">
+        <h3>Consultees</h3> 
+        <span>{{consulteeCount}}</span>
+      </div>
+      <button class="tip-ico tip-ico-primary">
+        <i class="fa fa-group fa-fw"></i>
+      </button>
+    </div>
+  </div>
+  <div class="col-md-3 animated fadeIn">
+    <div class="card card-block tip-card">
+      <div class="tip-msg">
+        <h3>Appointment's</h3>
+        <span>{{appointmentCount}}</span>
+      </div>
+      <button class="tip-ico tip-ico-info">
+        <i class="fa fa-comments fa-fw"></i>
+      </button>
+    </div>
+  </div>
+ 
+  <!-- <div class="col-md-3 animated fadeIn">
+    <div class="card card-block tip-card">
+      <div class="tip-msg">
+        <h3>Feedback</h3>
+        <span>20 feedbacks</span>
+      </div>
+      <button class="tip-ico tip-ico-danger">
+        <i class="fa fa-warning fa-fw"></i>
+      </button>
+    </div>
+  </div> -->
+  <div class="col-md-12">
+    <card cardTitle='Consultees List' isCollapse="true">
+      <!-- <div echarts [options]="AnimationBarOption" [loading]="showloading" theme="dark"></div> -->
+      <card >
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Mobile</th>
+          </tr>
+
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of tableData |
+           paginate: { id: 'pager', itemsPerPage: pageSize, currentPage: pageNumber};let index = index"
+           (dblclick)="openModal(myModal, item)" >
+            <td>{{item.firstname}}</td>
+            <td>{{item.lastname}}</td>
+            <td>{{item.age}}</td>
+            <td>{{item.gender}}</td>
+            <td>{{item.mobile}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <form class="pagination-wrapper">
+        <div class="form-group pages">
+          <pagination-controls class="my-pagination" id="pager" (pageChange)="pageChanged($event)" maxSize="9" directionLinks="true"
+            autoHide="true" previousLabel="Prev" nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+            screenReaderCurrentLabel="You're on page">
+          </pagination-controls>
+        </div>
+        <div class="form-group options pages pageStyle">
+          <div class="input-group input-group-sm">
+            <select class="form-control " name="pageChangedName" [(ngModel)]="pageSize" >
+              <option>1</option>
+              <option>5</option>
+              <option>10</option>
+              <option>20</option>
+              <option>50</option>
+              <option>100</option>
+              <option>200</option>
+            </select>
+            <span class="input-group-addon addon-right">Per Page</span>
+          </div>
+        </div>
+      </form>
+      </card>
+      
+    </card>
+  </div>
+  <!-- <div class="col-md-4">
+    <card cardTitle="Todo List" isCollapse="true">
+      <du-todolist></du-todolist>
+    </card>
+  </div> -->
+  <!-- <div class="col-md-6">
+    <card>
+      <profile></profile>
+    </card>
+  </div>
+  <div class="col-md-6">
+    <card>
+      <weather></weather>
+    </card>
+  </div> -->
+</div>
+<div id="myModal">
+  <modal #myModal>
+    <modal-header>
+      <!-- <div class="row">
+        <div class="col-4">
+          <h3>View History</h3>
+        </div>
+        <div class="col-6">
+          <button class="btn btn-primary" (click)="addAppointment()">Create Appointment</button>
+        </div>
+      </div> -->
+      <h3 class="mt-3">View History</h3>
+      <button class="btn btn-primary" style="float: right;" (click)="addAppointment()">Create Appointment</button>
+      
+    </modal-header>
+  
+  
+    <modal-content>
+    
+  
+      <div class="container">
+        <div class="row">
+         <div class="col-sm-2 form-group">
+           <label class="control-label">Name: {{selectedConsultant?.firstname}}</label>
+          
+         </div>
+         <div class="col-sm-3 form-group">
+           <label class="control-label">Mobile: {{selectedConsultant?.mobile}}</label>
+         </div>
+         <div class="col-sm-2 form-group">
+          <label class="control-label">Age: {{selectedConsultant?.age}}</label>
+        </div>
+         
+        </div>
+      </div>
+    
+      
+    <div class="table-responsive" style="margin-top: 5px;" *ngIf="showTable">
+      <table class="table ">
+      <thead>
+        <tr>
+          <th class="col-2">S.No</th>
+          <th class="col-4">Consultation Date</th>
+          <th class="col-4">IsVisited</th>
+          <th class="col-2">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let consultant of consultantHisoryList; let i=  index;">
+            <td class="col-2">{{i+1}}</td>
+          <td class="col-4" *ngIf="!consultant.showCal">
+            {{consultant.appDate}}
+          </td>
+          <td class="col-4" *ngIf="consultant.showCal">
+          <input type="datetime-local" name="datepick{{i}}" #datepick{{i}}="ngModel" [(ngModel)]="consultant.dateNTime" 
+          (ngModelChange)="changeDate(consultant)" />
+          </td>
+        
+          <td class="col-4">
+            <input type="checkbox" [(ngModel)]="consultant.isVisited"
+             [disabled]="!consultant.isVisited && !consultant.showCal && consultant.showCheckbox" />
+          </td>
+          <td class="col-2">
+            <button class="btn btn-primary" (click)="edit(consultant)" [disabled]="!consultant.isEdit" *ngIf="!consultant.showCal">Edit</button>
+            <button class="btn btn-primary" (click)="add(consultant)"  *ngIf="consultant.showCal">Add</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    </modal-content>
+    <modal-footer>
+      <div class="row">
+      
+        <div class="col-md-12">
+          <button class="btn btn-primary" (click)="closeModal(myModal)">Close</button>
+        </div>
+      </div>
+     
+    </modal-footer>
+  </modal>
+</div>
+

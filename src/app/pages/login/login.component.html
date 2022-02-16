@@ -1,0 +1,99 @@
+<!-- <div class="container">
+<div style="background-image: url('../../assets/images/bg.jpg'); background-size: cover;background-attachment: fixed; background-size: 100% 100%;  ;" 
+>
+
+</div>
+</div> -->
+<!-- <div class="card card-block login-card" >
+  <h3 class="form-label">Denty's</h3>
+  <div class="form-group">
+    <div class="input-group">
+      <span class="input-group-addon addon-left" id="username">
+        <i class="fa fa-user fa-fw"></i>
+      </span>
+      <input class="form-control with-primary-addon" placeholder="User Account" type="text">
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon addon-left" id="password">
+        <i class="fa fa-lock fa-fw"></i>
+      </span>
+      <input class="form-control with-primary-addon" placeholder="Password" type="password">
+    </div>
+    <button class="btn btn-lg btn-primary" (click)="login()">Login</button>
+    <a href="" class="btn btn-link">Register Now. →</a>
+  </div>
+</div> -->
+
+<body class="overflow-login">
+    <div class="row">
+        <div class="col-md-7">
+          <div class="login-bg text-center d-none d-md-block">
+            <h5>
+                Welcome To Denty's
+            </h5>
+            <h6>
+                A Clinic You Can Trust
+            </h6>
+        </div> 
+        <div class="row m-0 p-0">
+            <div class="login-footer">© All Rights Reserved 2020 <span class="red-color">NK Solutions</span></div>
+        </div>
+        </div>
+        <div class="col-md-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class=" login-logo">
+                        <img width="240px" height="169px" src="assets/images/suriya-logo-1.png">
+                    </div>
+                </div>
+                <div class="">
+                    <div class="login-form mt-4">
+                        <!-- <h6 class="login-form-text">Login</h6> -->
+                        <form>
+                            <div class="row" >
+                            <div class="col-md-12 col-xs-12 form-group mt-3 pt-1 mb-1" style="margin-top:7%;">
+                                <input  name="userName" type="text" class="form-control" [(ngModel)]="loginModel.username"
+                                    id="formGroupExampleInput" placeholder="User Name">
+                            </div>
+                            <div class="col-md-12 col-xs-12 form-group mb-1" style="margin-top:4%;">
+                                <input  name="password" type="password" class="form-control" [(ngModel)]="loginModel.password"
+                                    id="formGroupExampleInput2" placeholder="Password">
+                            </div>
+                            <!-- <div class="col-12 pl-3 w-100 captcha captcha-text mt-3">
+                                <h6>Please verify you are a human</h6>
+                                <div class="cpt">
+                                    <re-captcha (resolved)="resolved($event)"
+                                        siteKey="6LfLTlMaAAAAAIyphkbscsHJtIjFliS6Y7i3ZTIn"></re-captcha>
+                                </div>
+                            </div> -->
+                            <div class="col-12 d-flex">
+                            <button type="button"
+                             
+                                class="login-button w-100 mt-3 mb-2" style="margin-top:4%;" (click)="login()">LOGIN</button>
+                                <!-- <button type="button"
+                             
+                                class="login-button w-100 mt-3 mb-2" style="margin-top:4%;" (click)="login()">SIGNUP</button> -->
+                            </div>
+                        </div>
+                            <!-- <div class="col-12 mt-3 text-center">
+                            <label class="signup">
+                                <span class="cursor-pointer" (click)="openForgotPassword()">Forgot Password</span> | 
+                                <span class="signup-text"
+                                    (click)="userSignUp()"> New User Sign Up</span></label>
+                                </div> -->
+                        </form>
+  
+  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </body>
+  <!-- 
+  <div class="wrap loading-bg" *ngIf="showLoading">
+    <div class="loading">
+        <div class="bounceball"></div>
+        <div class="text">LOADING...</div>
+    </div>
+  </div> -->
