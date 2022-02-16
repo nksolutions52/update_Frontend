@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  APP_API_BASE: 'http://localhost:8085/',
+  APP_API_BASE: 'https://dentys.herokuapp.com/',
   APP_BASE_HREF: '/'
 
 };
