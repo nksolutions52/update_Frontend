@@ -25,6 +25,7 @@ export class IndexComponent extends RootComponent implements OnInit {
   consulteeCount: number;
   appointmentCount: number;
   selectedConsultant: any;
+  searchConsultee: "";
   consultantHisoryList: Array<ConsultHistory>;
   showTable: boolean;
   @ViewChild('myModal') myModal: ElementRef;
