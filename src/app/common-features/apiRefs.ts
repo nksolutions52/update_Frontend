@@ -1,5 +1,5 @@
 export const ApiRefs = {
-    baseURL: 'http://localhost:8085',
+    baseURL: 'https://dentys.herokuapp.com',
     baseContext: '/dentys/',
     createPatient:'createconsultee',
     createAppointment: 'createAppointment',
