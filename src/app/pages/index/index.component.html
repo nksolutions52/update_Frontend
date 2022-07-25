@@ -63,7 +63,7 @@
         <tbody>
           <tr *ngFor="let item of tableData |
            paginate: { id: 'pager', itemsPerPage: pageSize, currentPage: pageNumber};let index = index"
-           (dblclick)="openModal(myModal, item)" >
+           (dblclick)="openModal(myModal, item)" style="cursor: pointer;" >
             <td>{{item.id}}</td>
             <td>{{item.firstname}}</td>
             <td>{{item.lastname}}</td>
@@ -178,7 +178,7 @@
              [disabled]="!consultant.isVisited && !consultant.showCal && consultant.showCheckbox" />
           </td>
           <td class="col-2">
-            <button class="btn btn-primary" (click)="edit(consultant)" [disabled]="!consultant.isEdit" *ngIf="!consultant.showCal">Edit</button>
+            <button class="btn btn-primary" (click)="edit(consultant)" [disabled]="!consultant.isEdit || consultant.isVisited" *ngIf="!consultant.showCal">Edit</button>
             <button class="btn btn-primary" (click)="add(consultant)"  *ngIf="consultant.showCal">Add</button>
           </td>
         </tr>

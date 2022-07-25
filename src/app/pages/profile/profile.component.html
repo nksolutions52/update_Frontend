@@ -35,7 +35,7 @@
         </div>
         <div class="col-md-4 form-group">
           <label class="control-label">Age</label>
-          <input type="text" class="form-control" [(ngModel)]="createPatient.age" tabindex="5" placeholder="" tabindex="5" autocomplete="off" autofocus  name="age" #age="ngModel">
+          <input type="number" class="form-control" id="age" [(ngModel)]="createPatient.age" tabindex="5" placeholder="" tabindex="5" autocomplete="off" autofocus  name="age" #age="ngModel">
         </div>
       </div>
       <div class="row">
@@ -43,13 +43,13 @@
         <div class="col-md-4 form-group">
           <label class="control-label">Mobile
           <span class="mandatoryField">*</span></label>
-          <input type="text" class="form-control" [(ngModel)]="createPatient.mobile" autocomplete="off" autofocus tabindex="6" pattern="[0-9]*"
+          <input type="text" class="form-control" id="mobile1" [(ngModel)]="createPatient.mobile" autocomplete="off" autofocus tabindex="6" pattern="[0-9]*"
           minlength="10"
           maxlength="10"
            name="mobile" #mobile="ngModel" placeholder="" required >
            <div [hidden]="mobile.valid || mobile.pristine"
            class="alert alert-danger">
-           <div [hidden]="!mobile.hasError('maxlength')">Please enter 10 digits</div>
+           <div [hidden]="!mobile.hasError('minlength')">Please enter 10 digits</div>
            <div [hidden]="!mobile.hasError('required')">Mobile number is required</div>
            <div [hidden]="!mobile.hasError('pattern')">Mobile number must contain digits</div>
            </div>
@@ -62,6 +62,7 @@
                 <option value="null" selected>Select</option>
                 <option value="Dental">Dental</option>
                 <option value="Hair">Hair</option>
+                <option value="Hair">Skin</option>
             </select>
         </div>
       </div>
